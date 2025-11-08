@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/ADMIN/OneDrive/Desktop/MLOps/mlruns/602464189259425114/models/m-fa4940516a6e4b8ea5464c9682d51b34/artifacts
+creation_timestamp: 1762586132504
+experiment_id: '602464189259425114'
+last_updated_timestamp: 1762586137822
+model_id: m-fa4940516a6e4b8ea5464c9682d51b34
+model_type: null
+name: lpak_model
+source_run_id: 4d931ea3eeed432cad0a6275533cd7fc
+status: 2
+status_message: null

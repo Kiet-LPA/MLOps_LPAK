@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/ADMIN/OneDrive/Desktop/MLOps/mlruns/602464189259425114/4d931ea3eeed432cad0a6275533cd7fc/artifacts
+end_time: 1762586137850
+entry_point_name: ''
+experiment_id: '602464189259425114'
+lifecycle_stage: active
+run_id: 4d931ea3eeed432cad0a6275533cd7fc
+run_name: redolent-cub-1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762586132132
+status: 3
+tags: []
+user_id: ADMIN

@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/ADMIN/OneDrive/Desktop/MLOps/mlruns/602464189259425114/7703304118a64797bcf07be55a62a1a7/artifacts
+end_time: 1762586142739
+entry_point_name: ''
+experiment_id: '602464189259425114'
+lifecycle_stage: active
+run_id: 7703304118a64797bcf07be55a62a1a7
+run_name: suave-stag-852
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762586137871
+status: 3
+tags: []
+user_id: ADMIN

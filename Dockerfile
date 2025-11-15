@@ -17,6 +17,18 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Sao chép toàn bộ mã nguồn vào container
 COPY . .
 
+# Sao chép thư mục mlruns (chứa MLflow models) vào container
+COPY mlruns ./mlruns
+
+# Sao chép script sửa đường dẫn Windows
+COPY fix_mlflow_paths.py ./
+
+# Sửa đường dẫn Windows tuyệt đối trong metadata thành đường dẫn Linux
+RUN python fix_mlflow_paths.py /app/mlruns
+
+# Thiết lập biến môi trường MLflow tracking URI
+ENV MLFLOW_TRACKING_URI=/app/mlruns
+
 # Expose cổng Flask
 EXPOSE 5000
 

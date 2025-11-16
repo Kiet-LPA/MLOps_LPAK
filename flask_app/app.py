@@ -15,6 +15,19 @@ app = Flask(__name__)
 # Model version 1 được đăng ký từ run_id: 545cfe034e9f4902944e82b745e5e7a7
 # experiment_id: 602464189259425114
 model = None
+# Mô tả trực quan cho các đặc trưng đầu vào (có thể chỉnh sửa nhãn/hint theo domain)
+FEATURES = [
+    {"key": "f1", "label": "Đặc trưng 1", "hint": "Ví dụ: giá trị đo lường A"},
+    {"key": "f2", "label": "Đặc trưng 2", "hint": "Ví dụ: giá trị đo lường B"},
+    {"key": "f3", "label": "Đặc trưng 3", "hint": "Ví dụ: giá trị đo lường C"},
+    {"key": "f4", "label": "Đặc trưng 4", "hint": "Ví dụ: tỷ lệ hoặc phần trăm"},
+    {"key": "f5", "label": "Đặc trưng 5", "hint": "Ví dụ: chỉ số tổng hợp"},
+    {"key": "f6", "label": "Đặc trưng 6", "hint": "Ví dụ: số lượng đối tượng"},
+    {"key": "f7", "label": "Đặc trưng 7", "hint": "Ví dụ: thời gian (giây)"},
+    {"key": "f8", "label": "Đặc trưng 8", "hint": "Ví dụ: nhiệt độ/điện áp"},
+    {"key": "f9", "label": "Đặc trưng 9", "hint": "Ví dụ: khoảng cách/độ dài"},
+    {"key": "f10", "label": "Đặc trưng 10", "hint": "Ví dụ: tỉ số hoặc log"},
+]
 # Sử dụng base path từ MLFLOW_TRACKING_URI hoặc mặc định
 base_mlruns_path = mlflow_tracking_uri if os.path.isabs(mlflow_tracking_uri) else os.path.join(os.getcwd(), mlflow_tracking_uri)
 
@@ -55,15 +68,19 @@ else:
 @app.route("/", methods=["GET", "POST"])
 def index():
     prediction = None
+    errors = None
     if request.method == "POST":
         try:
-            # Đọc 10 feature đầu vào
-            features = [float(request.form[f"f{i}"]) for i in range(1, 11)]
+            # Đọc các feature dựa theo danh sách FEATURES
+            features = []
+            for feature in FEATURES:
+                raw_value = request.form.get(feature["key"], "").strip()
+                features.append(float(raw_value))
             arr = np.array(features).reshape(1, -1)
             prediction = int(model.predict(arr)[0])
         except Exception as e:
-            prediction = f"Lỗi khi dự đoán: {e}"
-    return render_template("index.html", prediction=prediction)
+            errors = f"Lỗi khi nhập liệu hoặc dự đoán: {e}"
+    return render_template("index.html", prediction=prediction, features=FEATURES, errors=errors)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

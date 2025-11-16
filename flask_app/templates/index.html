@@ -4,22 +4,89 @@
     <meta charset="UTF-8">
     <title>LPak Classifier</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 50px; }
-        input { width: 80px; margin: 3px; }
-        button { margin-top: 10px; padding: 8px 12px; }
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f7f9fc; color: #121826; }
+        .card { background: #fff; border-radius: 12px; box-shadow: 0 6px 24px rgba(16,24,40,0.06); padding: 24px; max-width: 900px; }
+        .header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 16px; }
+        .title { margin: 0; font-size: 22px; }
+        .subtitle { margin: 0; font-size: 14px; color: #475467; }
+        .grid { display: grid; grid-template-columns: repeat(2, minmax(280px, 1fr)); gap: 12px 24px; }
+        .field { display: flex; flex-direction: column; }
+        label { font-size: 13px; color: #344054; margin-bottom: 6px; }
+        input[type="number"] { padding: 10px 12px; border: 1px solid #D0D5DD; border-radius: 8px; font-size: 14px; }
+        input[type="number"]:focus { outline: none; border-color: #7F56D9; box-shadow: 0 0 0 3px rgba(127,86,217,0.12); }
+        .hint { font-size: 12px; color: #667085; margin-top: 4px; }
+        .actions { margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap; }
+        .btn { background: #7F56D9; color: #fff; border: none; padding: 10px 14px; border-radius: 8px; cursor: pointer; font-size: 14px; }
+        .btn.secondary { background: #EEF2FF; color: #344054; }
+        .result { margin-top: 18px; padding: 12px 14px; border-radius: 10px; background: #ECFDF3; color: #027A48; border: 1px solid #ABEFC6; }
+        .error { margin-top: 18px; padding: 12px 14px; border-radius: 10px; background: #FEF3F2; color: #B42318; border: 1px solid #FDBABA; }
+        .footer-note { font-size: 12px; color: #667085; margin-top: 14px; }
     </style>
 </head>
 <body>
-    <h2>Dự đoán kết quả phân loại (LPak Classifier)</h2>
-    <form method="POST">
-        {% for i in range(1, 11) %}
-            f{{i}}: <input type="number" name="f{{i}}" step="any" required><br>
-        {% endfor %}
-        <button type="submit">Dự đoán</button>
-    </form>
+    <div class="card">
+        <div class="header">
+            <div>
+                <h1 class="title">LPak Classifier</h1>
+                <p class="subtitle">Nhập dữ liệu đầu vào có ý nghĩa thay vì f1, f2, f3...</p>
+            </div>
+        </div>
 
-    {% if prediction is not none %}
-        <h3>Kết quả dự đoán: <span style="color:green">{{ prediction }}</span></h3>
-    {% endif %}
+        <form method="POST" id="predict-form">
+            <div class="grid">
+                {% if features %}
+                    {% for feature in features %}
+                        <div class="field">
+                            <label for="{{ feature.key }}">{{ feature.label }}</label>
+                            <input
+                                type="number"
+                                id="{{ feature.key }}"
+                                name="{{ feature.key }}"
+                                step="any"
+                                required
+                                placeholder="{{ feature.hint }}"
+                                title="{{ feature.hint }}"
+                            >
+                            <div class="hint">{{ feature.hint }}</div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% for i in range(1, 11) %}
+                        <div class="field">
+                            <label for="f{{i}}">Đặc trưng {{i}}</label>
+                            <input type="number" id="f{{i}}" name="f{{i}}" step="any" required placeholder="Nhập số">
+                            <div class="hint">Giá trị số (step: any)</div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="btn">Dự đoán</button>
+                <button type="button" class="btn secondary" onclick="fillSample()">Điền mẫu</button>
+                <button type="reset" class="btn secondary">Xóa</button>
+            </div>
+        </form>
+
+        {% if errors %}
+            <div class="error">{{ errors }}</div>
+        {% endif %}
+
+        {% if prediction is not none %}
+            <div class="result">Kết quả dự đoán: <strong>{{ prediction }}</strong></div>
+        {% endif %}
+
+        <div class="footer-note">Mẹo: Di chuột vào mỗi trường để xem gợi ý (tooltip).</div>
+    </div>
+
+    <script>
+    function fillSample() {
+        // Giá trị mẫu dễ thay đổi; hiện đặt mặc định 0..9
+        const inputs = document.querySelectorAll('input[type="number"]');
+        inputs.forEach((el, idx) => {
+            el.value = idx; // 0,1,2,...
+        });
+    }
+    </script>
 </body>
 </html>

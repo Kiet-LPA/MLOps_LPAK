@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    container_name: lpak-mlops-dev
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app               # Gắn toàn bộ source code vào container
+    environment:
+      FLASK_ENV: development
+      FLASK_DEBUG: "1"       # Bật auto reload
+    command: python flask_app/app.py
+
+

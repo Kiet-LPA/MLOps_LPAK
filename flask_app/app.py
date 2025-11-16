@@ -16,17 +16,18 @@ app = Flask(__name__)
 # experiment_id: 602464189259425114
 model = None
 # Mô tả trực quan cho các đặc trưng đầu vào (có thể chỉnh sửa nhãn/hint theo domain)
+# Gợi ý tên gần gũi, phổ biến cho các bài toán thực tế. Bạn có thể đổi tùy domain.
 FEATURES = [
-    {"key": "f1", "label": "Đặc trưng 1", "hint": "Ví dụ: giá trị đo lường A"},
-    {"key": "f2", "label": "Đặc trưng 2", "hint": "Ví dụ: giá trị đo lường B"},
-    {"key": "f3", "label": "Đặc trưng 3", "hint": "Ví dụ: giá trị đo lường C"},
-    {"key": "f4", "label": "Đặc trưng 4", "hint": "Ví dụ: tỷ lệ hoặc phần trăm"},
-    {"key": "f5", "label": "Đặc trưng 5", "hint": "Ví dụ: chỉ số tổng hợp"},
-    {"key": "f6", "label": "Đặc trưng 6", "hint": "Ví dụ: số lượng đối tượng"},
-    {"key": "f7", "label": "Đặc trưng 7", "hint": "Ví dụ: thời gian (giây)"},
-    {"key": "f8", "label": "Đặc trưng 8", "hint": "Ví dụ: nhiệt độ/điện áp"},
-    {"key": "f9", "label": "Đặc trưng 9", "hint": "Ví dụ: khoảng cách/độ dài"},
-    {"key": "f10", "label": "Đặc trưng 10", "hint": "Ví dụ: tỉ số hoặc log"},
+    {"key": "f1", "label": "Tuổi (năm)", "hint": "Ví dụ: 35"},
+    {"key": "f2", "label": "Chiều cao (cm)", "hint": "Ví dụ: 168"},
+    {"key": "f3", "label": "Cân nặng (kg)", "hint": "Ví dụ: 65"},
+    {"key": "f4", "label": "Tỉ lệ (%)", "hint": "Ví dụ: 12.5 (nhập phần trăm)"},
+    {"key": "f5", "label": "Điểm chỉ số", "hint": "Ví dụ: 72 (0-100)"},
+    {"key": "f6", "label": "Số lượng", "hint": "Ví dụ: 10"},
+    {"key": "f7", "label": "Thời gian (giây)", "hint": "Ví dụ: 2.4"},
+    {"key": "f8", "label": "Nhiệt độ (°C)", "hint": "Ví dụ: 36.6"},
+    {"key": "f9", "label": "Khoảng cách (m)", "hint": "Ví dụ: 120.5"},
+    {"key": "f10", "label": "Tỉ lệ lỗi (%)", "hint": "Ví dụ: 0.8"},
 ]
 # Sử dụng base path từ MLFLOW_TRACKING_URI hoặc mặc định
 base_mlruns_path = mlflow_tracking_uri if os.path.isabs(mlflow_tracking_uri) else os.path.join(os.getcwd(), mlflow_tracking_uri)

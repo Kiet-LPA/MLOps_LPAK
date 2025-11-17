@@ -13,4 +13,18 @@ services:
       FLASK_DEBUG: "1"       # Bật auto reload
     command: python flask_app/app.py
 
+  mlflow:
+    build: .
+    container_name: lpak-mlflow-ui
+    depends_on:
+      - app
+    ports:
+      - "5001:5000"          # Map cổng 5000 trong container MLflow UI ra 5001 host
+    volumes:
+      - .:/app               # Chia sẻ cùng thư mục để đọc ./mlruns
+    environment:
+      # Chỉ chạy UI, trỏ tới thư mục mlruns đã mount vào /app/mlruns
+      MLFLOW_TRACKING_URI: /app/mlruns
+    command: >
+      bash -lc "mlflow ui --host 0.0.0.0 --port 5000 --backend-store-uri /app/mlruns --default-artifact-root /app/mlruns"
 

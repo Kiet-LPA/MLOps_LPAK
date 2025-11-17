@@ -3,6 +3,8 @@ import mlflow.pyfunc
 import mlflow
 import numpy as np
 import os
+import csv
+from datetime import datetime
 
 # Thiết lập MLflow tracking URI (cho Docker container)
 mlflow_tracking_uri = os.environ.get('MLFLOW_TRACKING_URI', './mlruns')
@@ -70,6 +72,7 @@ else:
 def index():
     prediction = None
     errors = None
+    probability = None
     if request.method == "POST":
         try:
             # Đọc các feature dựa theo danh sách FEATURES
@@ -79,9 +82,36 @@ def index():
                 features.append(float(raw_value))
             arr = np.array(features).reshape(1, -1)
             prediction = int(model.predict(arr)[0])
+            # Thử lấy xác suất lớp 1 nếu khả dụng
+            try:
+                if hasattr(model, "predict_proba"):
+                    probability = float(model.predict_proba(arr)[0][1])
+                else:
+                    # Trường hợp mlflow pyfunc bọc sklearn model
+                    sklearn_model = getattr(getattr(model, "_model_impl", None), "model", None)
+                    if sklearn_model is not None and hasattr(sklearn_model, "predict_proba"):
+                        probability = float(sklearn_model.predict_proba(arr)[0][1])
+            except Exception:
+                probability = None
+
+            # Ghi log vào CSV: data/predictions.csv
+            try:
+                data_dir = os.path.join(os.getcwd(), "data")
+                os.makedirs(data_dir, exist_ok=True)
+                csv_path = os.path.join(data_dir, "predictions.csv")
+                header = [f"f{i}" for i in range(1, 11)] + ["prediction", "probability", "timestamp"]
+                row = features + [prediction, probability if probability is not None else "", datetime.utcnow().isoformat()]
+                file_exists = os.path.isfile(csv_path)
+                with open(csv_path, mode="a", newline="", encoding="utf-8") as f:
+                    writer = csv.writer(f)
+                    if not file_exists:
+                        writer.writerow(header)
+                    writer.writerow(row)
+            except Exception as e:
+                print(f"⚠️ CSV logging failed: {e}")
         except Exception as e:
             errors = f"Lỗi khi nhập liệu hoặc dự đoán: {e}"
-    return render_template("index.html", prediction=prediction, features=FEATURES, errors=errors)
+    return render_template("index.html", prediction=prediction, features=FEATURES, errors=errors, probability=probability)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

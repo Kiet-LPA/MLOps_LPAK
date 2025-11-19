@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/laragon/www/MLOps_LPAK/mlflow_project/mlruns/406985335093443245/5a48cbeaaaf04715b04b2b23407ff9f0/artifacts
+end_time: 1763370432387
+entry_point_name: ''
+experiment_id: '406985335093443245'
+lifecycle_stage: active
+run_id: 5a48cbeaaaf04715b04b2b23407ff9f0
+run_name: whimsical-fowl-570
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763370427028
+status: 3
+tags: []
+user_id: ADMIN

@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/laragon/www/MLOps_LPAK/mlflow_project/mlruns/406985335093443245/7eed6470b806403493b4c6e50d0bd242/artifacts
+end_time: 1763370435794
+entry_point_name: ''
+experiment_id: '406985335093443245'
+lifecycle_stage: active
+run_id: 7eed6470b806403493b4c6e50d0bd242
+run_name: crawling-sloth-568
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763370432397
+status: 3
+tags: []
+user_id: ADMIN

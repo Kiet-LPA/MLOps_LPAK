@@ -57,4 +57,4 @@ if __name__ == "__main__":
         "lpak_classifier"
     )
 
-    print(f"✅ Best model logged & registered from run {best_run}")
+    print(f"Best model logged & registered from run {best_run}")

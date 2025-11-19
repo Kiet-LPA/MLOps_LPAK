@@ -1,0 +1,15 @@
+creation_timestamp: 1763370439488
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763370439488
+model_id: m-efc8107098cc4da684cd0fb88df363ba
+name: lpak_classifier
+run_id: c6bba7dffa204644b4d891670f7fcbba
+run_link: null
+source: models:/m-efc8107098cc4da684cd0fb88df363ba
+status: READY
+status_message: null
+storage_location: file:///C:/laragon/www/MLOps_LPAK/mlflow_project/mlruns/406985335093443245/models/m-efc8107098cc4da684cd0fb88df363ba/artifacts
+user_id: null
+version: 1

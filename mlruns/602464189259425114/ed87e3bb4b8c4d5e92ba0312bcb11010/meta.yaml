@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/ADMIN/OneDrive/Desktop/MLOps/mlruns/602464189259425114/ed87e3bb4b8c4d5e92ba0312bcb11010/artifacts
+end_time: 1763468156458
+entry_point_name: ''
+experiment_id: '602464189259425114'
+lifecycle_stage: active
+run_id: ed87e3bb4b8c4d5e92ba0312bcb11010
+run_name: intelligent-shad-143
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763468153932
+status: 3
+tags: []
+user_id: ADMIN

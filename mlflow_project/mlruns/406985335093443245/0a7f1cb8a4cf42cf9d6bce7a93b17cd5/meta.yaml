@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/laragon/www/MLOps_LPAK/mlflow_project/mlruns/406985335093443245/0a7f1cb8a4cf42cf9d6bce7a93b17cd5/artifacts
+end_time: 1763370477151
+entry_point_name: ''
+experiment_id: '406985335093443245'
+lifecycle_stage: active
+run_id: 0a7f1cb8a4cf42cf9d6bce7a93b17cd5
+run_name: masked-bat-230
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763370472432
+status: 3
+tags: []
+user_id: ADMIN

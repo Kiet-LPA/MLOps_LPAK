@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/ADMIN/OneDrive/Desktop/MLOps/mlruns/602464189259425114/779d762fb7484ea486c99a4a33a66dee/artifacts
+end_time: 1763465997317
+entry_point_name: ''
+experiment_id: '602464189259425114'
+lifecycle_stage: active
+run_id: 779d762fb7484ea486c99a4a33a66dee
+run_name: caring-lynx-191
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763465993605
+status: 3
+tags: []
+user_id: ADMIN

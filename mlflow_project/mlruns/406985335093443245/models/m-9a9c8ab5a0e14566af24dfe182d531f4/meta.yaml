@@ -1,0 +1,10 @@
+artifact_location: file:///C:/laragon/www/MLOps_LPAK/mlflow_project/mlruns/406985335093443245/models/m-9a9c8ab5a0e14566af24dfe182d531f4/artifacts
+creation_timestamp: 1763370432700
+experiment_id: '406985335093443245'
+last_updated_timestamp: 1763370435767
+model_id: m-9a9c8ab5a0e14566af24dfe182d531f4
+model_type: null
+name: lpak_model
+source_run_id: 7eed6470b806403493b4c6e50d0bd242
+status: 2
+status_message: null

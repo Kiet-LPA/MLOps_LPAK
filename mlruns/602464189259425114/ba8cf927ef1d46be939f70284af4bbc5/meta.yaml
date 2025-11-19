@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/ADMIN/OneDrive/Desktop/MLOps/mlruns/602464189259425114/ba8cf927ef1d46be939f70284af4bbc5/artifacts
+end_time: 1763465990146
+entry_point_name: ''
+experiment_id: '602464189259425114'
+lifecycle_stage: active
+run_id: ba8cf927ef1d46be939f70284af4bbc5
+run_name: handsome-ant-250
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763465983108
+status: 3
+tags: []
+user_id: ADMIN

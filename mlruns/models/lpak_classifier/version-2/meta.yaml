@@ -1,0 +1,15 @@
+creation_timestamp: 1763465997751
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763465997751
+model_id: m-2d05ee456bc5425997c2a87a10fe8c33
+name: lpak_classifier
+run_id: 779d762fb7484ea486c99a4a33a66dee
+run_link: null
+source: models:/m-2d05ee456bc5425997c2a87a10fe8c33
+status: READY
+status_message: null
+storage_location: file:///C:/Users/ADMIN/OneDrive/Desktop/MLOps/mlruns/602464189259425114/models/m-2d05ee456bc5425997c2a87a10fe8c33/artifacts
+user_id: null
+version: 2
